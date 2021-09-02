@@ -1,0 +1,81 @@
+TextWindow.WriteLine("Welcome To Flip the Coin!")
+TextWindow.WriteLine("First Pick 'Heads' or 'Tails'")
+TextWindow.WriteLine("Then Flip The Coin!")
+
+Button1 = Controls.AddButton("Flip The Coin", 50, 50)
+Button2 = Controls.AddButton("Pick Heads", 50, 120)
+Button3 = Controls.AddButton("Pick Tails", 50, 150)
+
+Controls.ButtonClicked = clicked
+
+pick = "Undecided"
+
+Sub clicked
+  buttonclicked = Controls.LastClickedButton
+  
+  If buttonclicked = Button1 Then
+    side=Math.GetRandomNumber(4)
+   
+   If side >= 3 Then
+     TextWindow.WriteLine("The Coin shows Heads!")
+     ImagePath = "http://i.ebayimg.com/00/s/NjYwWDY1MA==/z/TToAAOxyn9BRbnRi/$T2eC16F,!zEE9s3!(I6DBRbnRim,bg~~60_35.JPG"
+Image = ImageList.LoadImage(ImagePath)
+Width = ImageList.GetWidthOfImage(ImagePath)
+Height= ImageList.GetHeightOfImage(ImagePath)
+GraphicsWindow.Width = Width
+GraphicsWindow.Height= Height
+GraphicsWindow.DrawImage(Image, 0, 0)
+
+If pick = "Heads" Then
+        TextWindow.WriteLine("You Win!")  
+      EndIf
+ 
+      If pick = "Tails" Then
+        TextWindow.WriteLine("You Lose!")
+        EndIf
+        
+        If pick = "Undecided" Then
+        GraphicsWindow.ShowMessage("Please pick a side","Message")
+        EndIf
+
+      EndIf
+      
+  If side <= 2 Then
+       TextWindow.WriteLine("The Coin shows Tails!")
+       ImagePath = "http://i.ebayimg.com/t/One-Pound-Coin-Round-Mouse-Mat-British-Sterling-Money-Coin-Tails-Mouse-pad-/00/s/NjUzWDY1MA==/z/YlYAAMXQMTlRbmeu/$T2eC16R,!zcE9s4g3IvWBRbmeurd(w~~60_35.JPG"
+Image = ImageList.LoadImage(ImagePath)
+Width = ImageList.GetWidthOfImage(ImagePath)
+Height= ImageList.GetHeightOfImage(ImagePath)
+GraphicsWindow.Width = Width
+GraphicsWindow.Height= Height
+GraphicsWindow.DrawImage(Image, 0, 0)
+
+If pick = "Tails" Then
+         TextWindow.WriteLine("You Win!")  
+       EndIf
+       
+         If pick = "Heads" Then
+           TextWindow.WriteLine("You Lose!")  
+           EndIf
+        
+        If pick = "Undecided" Then
+           GraphicsWindow.ShowMessage("Please pick a side","Message")
+       
+     EndIf
+
+EndIf
+
+  EndIf
+  
+  If buttonclicked = Button2 Then
+    pick = "Heads"
+    TextWindow.WriteLine("You have picked Heads")
+  EndIf
+ 
+  If buttonclicked = Button3 Then
+    pick = "Tails"
+    TextWindow.WriteLine("You have picked Tails")
+  EndIf
+    
+  EndSub
+  

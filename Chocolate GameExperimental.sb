@@ -1,0 +1,127 @@
+money = 100000
+cacao = 10
+milk = 10
+bfactory = Controls.AddButton("Build Factory",100,100)
+bstorage = Controls.AddButton("Build Storage Facility",100,125)
+brepair = Controls.AddButton("Build Repair Facility",100,150)
+bHQ = Controls.AddButton("Build HQ",100,175)
+moneybutt = Controls.AddButton(money,100,75)
+building = "false"
+nfact = 0
+tax = 5
+
+Sub Build
+
+
+
+EndSub
+
+ GraphicsWindow.MouseDown = OnMouseDown
+
+Sub OnMouseDown
+  
+  If building = "true" Then
+    
+    If buildingitem = "factory" Then
+      
+      If money >= 100000 Then
+        
+        money = money - (100000+(nfact*20000))
+        nfact = nfact + 1
+        Factory = "Factory"+nfact
+         = Shapes.AddImage("C:\Users\micha\Downloads\SideScroller\SideScroller\Brick.Png")
+        Shapes.Move(facprint,xm,ym)
+        TextWindow.WriteLine(facprint)
+        Controls.Remove(moneybutt)
+  moneybutt = Controls.AddButton(money,100,75)
+        
+      EndIf
+      
+      
+    EndIf
+    
+  EndIf  
+  
+EndSub
+
+
+Controls.ButtonClicked = clicked
+
+Sub clicked
+  
+  buttonclicked = Controls.LastClickedButton
+  
+  If buttonclicked = bfactory Then
+      
+      buildfactory()
+    
+  ElseIf buttonclicked = brepair Then
+    
+    buildrepair()
+   
+ EndIf
+ 
+  
+EndSub
+
+'BUILDING FACTORY'
+
+Sub buildfactory
+  
+  If building = "true" Then
+      
+      building = "false"
+      Shapes.Remove(FactoryWhere)
+      
+    ElseIf building = "false" Then
+    
+  FactoryWhere = Shapes.AddImage("C:\Users\micha\Downloads\SideScroller\SideScroller\Brick.Png")
+    xm = GraphicsWindow.MouseX
+    ym = GraphicsWindow.MouseY
+    building = "true"
+    buildingitem = "factory"
+    
+    While building = "true"
+      xm = GraphicsWindow.MouseX + 1
+      ym = GraphicsWindow.MouseY + 1
+      Shapes.Move(FactoryWhere,xm,ym)
+    EndWhile
+    
+  EndIf
+  
+EndSub
+
+'DONE'
+
+'BUILDING REPAIR AREA'
+
+Sub buildrepair
+  
+  If building = "true" Then
+      
+      building = "false"
+      Shapes.Remove(FactoryWhere)
+      
+    ElseIf building = "false" Then
+    
+  FactoryWhere = Shapes.AddImage("C:\Users\micha\Downloads\SideScroller\SideScroller\Elevator1.PNG")
+    xm = GraphicsWindow.MouseX
+    ym = GraphicsWindow.MouseY
+    building = "true"
+    buildingitem = "storage"
+    
+    While building = "true"
+     
+      xm = GraphicsWindow.MouseX + 1
+    ym = GraphicsWindow.MouseY + 1
+    Shapes.Move(FactoryWhere,xm,ym)
+       
+    EndWhile
+    
+   EndIf
+  
+EndSub
+
+'DONE'
+  
+  

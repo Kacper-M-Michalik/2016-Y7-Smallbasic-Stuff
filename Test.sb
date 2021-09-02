@@ -1,0 +1,23 @@
+ButtonHeads = Controls.AddButton("Pick Tails", 150, 50)
+Button1 = Controls.AddButton("Flip The Coin", 50, 50)
+ButtonTails = Controls.AddButton("Pick Heads", 250, 50) 
+
+Controls.ButtonClicked = buttClicked
+
+TextWindow.WriteLine("Hello, what is your name?")
+name = TextWindow.Read()
+TextWindow.WriteLine("Welcome " + name + "!")
+
+TextWindow.WriteLine("How old are you?")
+age = TextWindow.ReadNumber()
+TextWindow.WriteLine("Guess what? You will be " + (age+10) + " in 10 years time!")
+
+TextWindow.WriteLine(" ")
+TextWindow.WriteLine("Lets play a game... Flip the coin!")
+TextWindow.WriteLine("First type in 'Heads' or 'Tails'")
+TextWindow.WriteLine("Then when you are ready press the 'Flip The Coin' button!")
+
+If buttClicked Then
+  TextWindow.WriteLine(side)
+  EndIf
+

@@ -1,0 +1,21 @@
+For i = 1 To nfact
+
+   If around = "False" Then
+
+   check for and collisions
+
+   Else If around = "True"
+
+   too close to different building
+   i = nfact
+
+   EndIf
+
+EndFor
+
+dp1 = (shapeX[i]-xm1)^2 + (shapeY[i]-ym1)^2
+d = Math.SquareRoot(dp1)
+
+d > 30 Or
+ dp1 = ((shapeX[i]-xm1)*(shapeX[i]-xm1)) + ((shapeY[i]-ym1)*(shapeY[i]-ym1))
+          d = Math.SquareRoot(dp1)

@@ -1,0 +1,76 @@
+GraphicsWindow.Title = "The Trading Game"
+GraphicsWindow.BrushColor = ("purple")
+
+money = 1000
+currentshop = "Shop"
+invwood = 0
+inviron = 0
+invoil = 0
+shopclicked = "none"
+minwoodprice = 2
+minironprice = 7
+minoilprice = 14
+taxshop1 = 5
+taxshop2 = 5
+taxshop3 = 5
+taxshop4 = 5
+
+ImagePath = "D:\Small Basic\world.png"
+Image = ImageList.LoadImage(ImagePath)
+Width = ImageList.GetWidthOfImage(ImagePath)
+Height= ImageList.GetHeightOfImage(ImagePath)
+GraphicsWindow.Width = Width
+GraphicsWindow.Height= Height
+GraphicsWindow.DrawImage(Image, 0, 0)
+
+
+GraphicsWindow.BrushColor = ("yellow")
+howtostore = Shapes.AddRectangle(400,300)
+Shapes.Move(howtostore,200,260)
+GraphicsWindow.BrushColor = ("purple")
+Buttonplay = Controls.AddButton("          Play          ", 350, 200)
+Buttonhowto = Shapes.AddText("First pick a shop")
+Shapes.Move(Buttonhowto,345,270)
+Buttonhowto2 = Shapes.AddText("Then using the menu (which will pop-up) pick 'buy',") 
+Shapes.Move(Buttonhowto2,260,295)
+Buttonhowto21 = Shapes.AddText("'sell' or 'Cancel' when you are not interested in the shops stock")
+Shapes.Move(Buttonhowto21,215,310)
+Buttonhowto3 = Shapes.AddText("Then pick what item you want to buy/sell")
+Shapes.Move(Buttonhowto3,270,325)
+Buttonhowto4 = Shapes.AddText("Then type in how many of those items you want to buy/sell!")
+Shapes.Move(Buttonhowto4,220,340)
+Buttonhowto5 = Shapes.AddText("Then pick another shop and sell of your stock for a higher price!")
+Shapes.Move(Buttonhowto5,210,355)
+Buttonhowto6 = Shapes.AddText("Each time you visit a shop it will cost 100 money!")
+Shapes.Move(Buttonhowto6,240,370)
+Buttonhowto7 = Shapes.AddText("Each round the tax rate in each shop changes")
+Shapes.Move(Buttonhowto7,250,385)
+Buttonhowto8 = Shapes.AddText("Tax is when a shop will take of a bit of the")
+Shapes.Move(Buttonhowto8,250,400)
+Buttonhowto81 = Shapes.AddText("money you earned when you sold something")
+Shapes.Move(Buttonhowto81,260,415)
+Buttonhowto9 = Shapes.AddText("REMEMBER whenever your sale exceeds 100000 money,")
+Shapes.Move(Buttonhowto9,250,430)
+Buttonhowto91 = Shapes.AddText("the shop will tax double amount")
+Shapes.Move(Buttonhowto91,280,445)
+Buttonhowto10 = Shapes.AddText("Your mission is earn 10 Million money and to not go bankrupt")
+Shapes.Move(Buttonhowto10,220,460)
+Buttonhowto11 = Shapes.AddText("Good luck!")
+Shapes.Move(Buttonhowto11,360,490)
+
+
+
+Controls.ButtonClicked = clicked
+
+Sub clicked
+  
+  buttonclicked = Controls.LastClickedButton  
+  
+  
+  
+  
+  
+  
+  
+  
+EndSub

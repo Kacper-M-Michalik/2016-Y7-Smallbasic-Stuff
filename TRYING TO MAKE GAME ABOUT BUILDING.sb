@@ -1,0 +1,104 @@
+BuildButton = Controls.AddButton("Build",100,100)
+Office1 = Controls.AddButton("   +   ",300,175)
+Shapes.HideShape(Office1)
+Office2 = Controls.AddButton("   +   ",300,150)
+Shapes.HideShape(Office2)
+Office3 = Controls.AddButton("   +   ",300,200)
+Shapes.HideShape(Office3)
+boffice = Controls.AddButton("Build Offices",100,250)
+bjanitor = Controls.AddButton("Build Janitor Rooms",100,275)
+belevator = Controls.AddButton("Build Elevators",100,300)
+Shapes.HideShape(boffice)
+Shapes.HideShape(bjanitor)
+Shapes.HideShape(belevator)
+building = "false"
+buildoption = 1
+xs = 100
+ys = 100
+
+Controls.ButtonClicked = clicked
+
+Sub clicked
+  
+  buttonclicked = Controls.LastClickedButton  
+  
+  'WHICH TO BUILD'
+  
+  If buttonclicked = boffice Then
+    
+    buildoption = 1
+    
+  EndIf
+  
+  If buttonclicked = bjanitor Then
+    
+    buildoption = 2
+    
+  EndIf
+  
+  If buttonclicked = belevator Then
+    
+    buildoption = 3
+    
+  EndIf
+  
+  'BUILD HIDE/SHOW BUTTON PROGRAMMING'
+  
+  If buttonclicked = BuildButton Then
+    If building = "false" Then
+      Shapes.ShowShape(Office1)
+      Shapes.ShowShape(Office2)
+      Shapes.ShowShape(Office3)
+      Shapes.ShowShape(belevator)
+      Shapes.ShowShape(bjanitor)
+      Shapes.ShowShape(boffice)
+      building = "true"
+    ElseIf building = "true" Then
+      Shapes.HideShape(Office1)
+      Shapes.HideShape(Office2)
+      Shapes.HideShape(Office3)
+      Shapes.HideShape(belevator)
+      Shapes.HideShape(bjanitor)
+      Shapes.HideShape(boffice)
+      building = "false"
+    EndIf    
+  EndIf
+  
+  If buttonclicked = Office1 Or Office2 Or Office3 Then
+    
+    If buttonclicked = Office1 Then
+      
+     xs = Shapes.GetLeft(Office1)
+     ys = Shapes.GetTop(Office1)
+     TextWindow.Write(xs)
+      which()
+      
+    EndIf
+    
+    
+  EndIf
+  
+EndSub
+
+Sub Which
+  
+  If buildoption = 1 Then
+    
+    GraphicsWindow.DrawImage("C:\Users\micha\Downloads\SideScroller\SideScroller\Elevator1.PNG","xs",ys)
+    
+  EndIf
+  
+   If buildoption = 2 Then
+     
+     
+     
+  EndIf
+  
+   If buildoption = 3 Then
+     
+     
+     
+  EndIf
+  
+EndSub
+  

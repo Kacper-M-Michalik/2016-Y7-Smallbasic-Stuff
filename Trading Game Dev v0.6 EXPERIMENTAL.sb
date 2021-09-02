@@ -1,0 +1,453 @@
+money = 1000
+currentshop = "Shop"
+invwood = 0
+inviron = 0
+invoil = 0
+shopclicked = "none"
+minwoodprice = 2
+minironprice = 5
+minoilprice = 9
+taxshop1 = 5
+taxshop2 = 5
+taxshop3 = 5
+taxshop4 = 5
+
+TextWindow.WriteLine("Welcome To Trader!")
+TextWindow.WriteLine("First pick a shop")
+TextWindow.WriteLine("Then using this console type in 'buy', 'sell' or a random word when you are not interested in the shops stock")
+TextWindow.WriteLine("Then type in what item you want to buy/sell")
+TextWindow.WriteLine("Then type in how many of those items you want to buy/sell!")
+TextWindow.WriteLine("Then pick another shop and sell of your stock for a higher price!")
+TextWindow.WriteLine("Each time you visit a shop it will cost 100 money!")
+TextWindow.WriteLine("Each round the tax rate in each shop changes")
+TextWindow.WriteLine("Tax is when a shop will take of a bit of the money you earned when you sold something")
+TextWindow.WriteLine("REMEMBER whenever your sale exceeds 100000 money, the shop will tax double amount")
+TextWindow.WriteLine("Your mission is earn 1 Million money and to not go bankrupt")
+TextWindow.WriteLine("Good luck!")
+
+Button10 = Controls.AddButton("Play", 400, 300)
+
+ImagePath = "D:\Small Basic\world.png"
+Image = ImageList.LoadImage(ImagePath)
+Width = ImageList.GetWidthOfImage(ImagePath)
+Height= ImageList.GetHeightOfImage(ImagePath)
+GraphicsWindow.Width = Width
+GraphicsWindow.Height= Height
+GraphicsWindow.DrawImage(Image, 0, 0)
+
+Controls.ButtonClicked = clicked
+
+Sub clicked
+  
+  buttonclicked = Controls.LastClickedButton
+  
+  If money < 0 Then
+    Sound.PlayBellRing()
+    GraphicsWindow.ShowMessage("You lose","Message")
+    Program.End()
+  EndIf
+  
+  If money >= 1000000 Then
+    Sound.PlayBellRing()
+    GraphicsWindow.ShowMessage("You win!","Message")
+    Program.End()
+  EndIf
+  
+  If buttonclicked = Button10 Then
+    
+    Sound.PlayChime()
+    Controls.Remove(Button10)
+    
+    
+    Button1 = Controls.AddButton("Shop 1", 550, 180)
+Button2 = Controls.AddButton("Shop 2", 350, 250)
+Button3 = Controls.AddButton("Shop 3", 400, 400)
+Button4 = Controls.AddButton("Shop 4", 175, 250)
+Button5 = Controls.AddButton("Money: "+ money, 50, 50)
+Button6 = Controls.AddButton("Wood In Inventory: " + invwood, 50, 80)
+Button7 = Controls.AddButton("Iron In Inventory: "+ inviron, 50, 110)
+Button8 = Controls.AddButton("Oil In Inventory: "+ invoil, 50, 140)
+Button11 = Controls.AddButton("Tax: "+ taxshop1 +"%", 550, 205)
+Button12 = Controls.AddButton("Tax: "+ taxshop2 +"%", 350, 275)
+Button13 = Controls.AddButton("Tax: "+ taxshop3 +"%", 400, 425)
+Button14 = Controls.AddButton("Tax: "+ taxshop4 +"%", 175, 275)
+
+    EndIf
+    
+    If buttonclicked = Button1 Or buttonclicked = Button2 Or buttonclicked = Button3 Or buttonclicked = Button4 Then
+      
+      If buttonclicked = Button1 Then
+        
+        taxwhich = taxshop1
+         Sound.PlayChimes()
+         shopclicked = "Shop 1"
+       loaded = 1
+    
+    EndIf
+    
+    If buttonclicked = Button2 Then
+      
+taxwhich = taxshop2
+      Sound.PlayChimes()
+      shopclicked = "Shop 2"
+   loaded = 1
+    
+  EndIf
+  
+  If buttonclicked = Button3 Then
+    
+  taxwhich = taxshop3
+     Sound.PlayChimes()
+     shopclicked = "Shop 3"
+   loaded = 1
+    
+  EndIf
+  
+  If buttonclicked = Button4 Then
+    
+    taxwhich = taxshop4
+     Sound.PlayChimes()
+     shopclicked = "Shop 4"
+     loaded = 1
+     
+    
+  EndIf
+      
+      
+      
+  If shopclicked <> currentshop Then
+        
+    money = money - 100
+    Controls.Remove(Button5)
+   Button5 = Controls.AddButton("Money: "+ money, 50, 50)
+   
+   
+   
+     If buttonclicked = Button1 Then
+       
+        Controls.Remove(Button9)
+    Button9 = Controls.AddButton("You Are Here", 550, 240)
+    currentshop = "Shop 1"
+    
+    taxshop2 = Math.GetRandomNumber(15)
+          taxshop3 = Math.GetRandomNumber(15)
+          taxshop4 = Math.GetRandomNumber(15)
+            Controls.Remove(Button12)
+            Controls.Remove(Button13)
+            Controls.Remove(Button14)
+Button12 = Controls.AddButton("Tax: "+ taxshop2 +"%", 350, 275)
+Button13 = Controls.AddButton("Tax: "+ taxshop3 +"%", 400, 425)
+Button14 = Controls.AddButton("Tax: "+ taxshop4 +"%", 175, 275)
+          
+    loaded = 1
+    
+    EndIf
+    
+    If buttonclicked = Button2 Then
+      
+      Controls.Remove(Button9)
+    Button9 = Controls.AddButton("You Are Here", 350, 310)
+    currentshop = "Shop 2"
+    taxshop1 = Math.GetRandomNumber(15)
+          taxshop3 = Math.GetRandomNumber(15)
+          taxshop4 = Math.GetRandomNumber(15)
+            Controls.Remove(Button11)
+            Controls.Remove(Button13)
+            Controls.Remove(Button14)
+Button11 = Controls.AddButton("Tax: "+ taxshop1 +"%", 550, 205)
+Button13 = Controls.AddButton("Tax: "+ taxshop3 +"%", 400, 425)
+Button14 = Controls.AddButton("Tax: "+ taxshop4 +"%", 175, 275)
+    loaded = 1
+    
+  EndIf
+  
+  If buttonclicked = Button3 Then
+    
+     Controls.Remove(Button9)
+    Button9 = Controls.AddButton("You Are Here", 400, 460)
+    currentshop = "Shop 3"
+    taxshop1 = Math.GetRandomNumber(15)
+          taxshop2 = Math.GetRandomNumber(15)
+          taxshop4 = Math.GetRandomNumber(15)
+            Controls.Remove(Button11)
+            Controls.Remove(Button12)
+            Controls.Remove(Button14)
+Button11 = Controls.AddButton("Tax: "+ taxshop1 +"%", 550, 205)
+Button12 = Controls.AddButton("Tax: "+ taxshop2 +"%", 350, 275)
+Button14 = Controls.AddButton("Tax: "+ taxshop4 +"%", 175, 275)
+    loaded = 1
+    
+  EndIf
+  
+  If buttonclicked = Button4 Then
+    
+    Controls.Remove(Button9)
+    Button9 = Controls.AddButton("You Are Here", 175, 310)
+    currentshop = "Shop 4"
+    taxshop1 = Math.GetRandomNumber(15)
+          taxshop2 = Math.GetRandomNumber(15)
+          taxshop3 = Math.GetRandomNumber(15)
+            Controls.Remove(Button11)
+            Controls.Remove(Button12)
+            Controls.Remove(Button13)
+Button11 = Controls.AddButton("Tax: "+ taxshop1 +"%", 550, 205)
+Button12 = Controls.AddButton("Tax: "+ taxshop2 +"%", 350, 275)
+Button13 = Controls.AddButton("Tax: "+ taxshop3 +"%", 400, 425)
+    loaded = 1
+    
+  EndIf
+  
+  woodprice = 1
+  ironprice = 1
+  oilprice = 1
+  
+    While woodprice < minwoodprice
+      woodprice = Math.GetRandomNumber(20)
+    EndWhile
+    
+    While ironprice < minironprice
+      ironprice = Math.GetRandomNumber(40)
+    EndWhile
+    
+    While oilprice < minoilprice
+      oilprice = Math.GetRandomNumber(80)
+      EndWhile
+    
+    If woodprice >= 11 Then
+      pricegoodwood = "Good price for selling"
+    ElseIf woodprice <= 9 Then
+      pricegoodwood = "Good price for buying"
+    ElseIf woodprice = 10 then
+      pricegoodwood = "Neutral Price"
+    EndIf
+    
+     If ironprice >= 21 Then
+      pricegoodiron = "Good price for selling"
+    ElseIf ironprice <= 19 Then
+      pricegoodiron = "Good price for buying"
+    ElseIf ironprice = 20 then
+      pricegoodiron = "Neutral Price"
+    EndIf
+    
+     If oilprice >= 41 Then
+      pricegoodoil = "Good price for selling"
+    ElseIf oilprice <= 39 Then
+      pricegoodoil = "Good price for buying"
+    ElseIf oilprice = 40 then
+      pricegoodoil = "Neutral Price"
+    EndIf
+    
+  EndIf
+  
+    If loaded = 1 Then
+  
+    TextWindow.WriteLine(" ")
+    TextWindow.WriteLine("Welcome To "+ currentshop + "!")
+    TextWindow.WriteLine("Wood = "+ woodprice + " per unit    " + pricegoodwood)
+    TextWindow.WriteLine("Iron = "+ ironprice + " per unit    " + pricegoodiron)
+    TextWindow.WriteLine("Oil = "+ oilprice + " per unit    " + pricegoodoil)
+    TextWindow.WriteLine(" ")
+    TextWindow.WriteLine("Current Tax In This Shop: "+ taxwhich + "%")
+    TextWindow.WriteLine(" ")
+    TextWindow.WriteLine("Please type in 'buy', 'sell', or 'cancel'")
+    
+      buyorsell = TextWindow.Read()
+      loaded = 0
+      EndIf
+    
+    If buyorsell = "buy" Then
+      TextWindow.WriteLine("Please type in 'wood', 'oil' or 'iron'")
+      
+      itemofinterestbuy = TextWindow.Read()
+      
+      If itemofinterestbuy = "wood" Then
+        
+        TextWindow.WriteLine("Please type in how much wood you want to buy")
+        numberbuy = TextWindow.ReadNumber()
+        
+        If money >= (woodprice*numberbuy) Then
+          
+          money = money - (woodprice*numberbuy)
+          invwood = invwood + numberbuy
+          TextWindow.WriteLine("Thank you for buying "+ numberbuy + " wood")
+          
+   
+          Controls.Remove(Button5)
+          Button5 = Controls.AddButton("Money: "+ money, 50, 50)
+          Controls.Remove(Button6)
+          Button6 = Controls.AddButton("Wood In Inventory: " + invwood, 50, 80)
+          Controls.Remove(Button7)
+          Button7 = Controls.AddButton("Iron In Inventory: "+ inviron, 50, 110)
+          Controls.Remove(Button8)
+          Button8 = Controls.AddButton("Oil In Inventory: "+ invoil, 50, 140)
+
+          
+        Else
+          
+          TextWindow.WriteLine("You don't have enough money")
+          
+          EndIf
+        
+      ElseIf itemofinterestbuy = "iron" Then
+        
+        TextWindow.WriteLine("Please type in how much iron you want to buy")
+        numberbuy = TextWindow.ReadNumber()
+        
+        If money >= (ironprice*numberbuy) Then
+          
+          money = money - (ironprice*numberbuy)
+          inviron = inviron + numberbuy
+          TextWindow.WriteLine("Thank you for buying "+ numberbuy + " iron")
+
+          Button5 = Controls.AddButton("Money: "+ money, 50, 50)
+          Controls.Remove(Button6)
+          Button6 = Controls.AddButton("Wood In Inventory: " + invwood, 50, 80)
+          Controls.Remove(Button7)
+          Button7 = Controls.AddButton("Iron In Inventory: "+ inviron, 50, 110)
+          Controls.Remove(Button8)
+          Button8 = Controls.AddButton("Oil In Inventory: "+ invoil, 50, 140)
+
+
+        Else
+          
+          TextWindow.WriteLine("You don't have enough money")
+          
+          EndIf
+        
+        
+      ElseIf itemofinterestbuy = "oil" Then
+        
+        TextWindow.WriteLine("Please type in how much oil you want to buy")
+        numberbuy = TextWindow.ReadNumber()
+        
+        If money >= (oilprice*numberbuy) Then
+          
+          money = money - (oilprice*numberbuy)
+          invoil = invoil + numberbuy
+          TextWindow.WriteLine("Thank you for buying "+ numberbuy + " oil")
+          
+          Controls.Remove(Button5)
+          Button5 = Controls.AddButton("Money: "+ money, 50, 50)
+          Controls.Remove(Button6)
+          Button6 = Controls.AddButton("Wood In Inventory: " + invwood, 50, 80)
+          Controls.Remove(Button7)
+          Button7 = Controls.AddButton("Iron In Inventory: "+ inviron, 50, 110)
+          Controls.Remove(Button8)
+          Button8 = Controls.AddButton("Oil In Inventory: "+ invoil, 50, 140)
+
+          
+        Else
+          
+          TextWindow.WriteLine("You don't have enough money")
+          
+          EndIf
+        
+        
+        EndIf
+      
+    ElseIf buyorsell = "sell" Then
+      TextWindow.WriteLine("Please type in 'wood', 'oil' or 'iron'")
+      
+      itemofinterestsell = TextWindow.Read()
+      
+      If itemofinterestsell = "wood" Then
+        
+        TextWindow.WriteLine("How much wood do you want to sell?")
+        numbersell = TextWindow.ReadNumber()
+        
+        If invwood >= numbersell Then
+          
+          invwood = invwood - numbersell
+          money = money + ((numbersell * woodprice)*(1 - (taxwhich/100)))
+          TextWindow.WriteLine("Thank you for selling "+ numbersell + " wood")
+          TextWindow.WriteLine("You have earned: "+ (numbersell*woodprice) + " money")
+          TextWindow.WriteLine("After Tax (" + taxwhich + "%): "+ ((numbersell * woodprice)*(1 - (taxwhich/100))) + " money")
+          
+          Controls.Remove(Button5)
+          Button5 = Controls.AddButton("Money: "+ money, 50, 50)
+          Controls.Remove(Button6)
+          Button6 = Controls.AddButton("Wood In Inventory: " + invwood, 50, 80)
+          Controls.Remove(Button7)
+          Button7 = Controls.AddButton("Iron In Inventory: "+ inviron, 50, 110)
+          Controls.Remove(Button8)
+          Button8 = Controls.AddButton("Oil In Inventory: "+ invoil, 50, 140)
+
+          
+        Else
+          
+          TextWindow.WriteLine("You don't have enough wood")
+          
+        EndIf
+        
+        
+      ElseIf itemofinterestsell = "iron" Then
+        
+        TextWindow.WriteLine("How much iron do you want to sell?")
+        numbersell = TextWindow.ReadNumber()
+        
+        If inviron >= numbersell Then
+          
+          inviron = inviron - numbersell
+          money = money + ((numbersell * ironprice)*(1 - (taxwhich/100)))
+          TextWindow.WriteLine("Thank you for selling "+ numbersell + " iron")
+          TextWindow.WriteLine("You have earned: "+ (numbersell*ironprice) + " money")
+          TextWindow.WriteLine("After Tax (" + taxwhich + "%): "+ ((numbersell * ironprice)*(1 - (taxwhich/100))) + " money")
+          
+          Controls.Remove(Button5)
+          Button5 = Controls.AddButton("Money: "+ money, 50, 50)
+          Controls.Remove(Button6)
+          Button6 = Controls.AddButton("Wood In Inventory: " + invwood, 50, 80)
+          Controls.Remove(Button7)
+          Button7 = Controls.AddButton("Iron In Inventory: "+ inviron, 50, 110)
+          Controls.Remove(Button8)
+          Button8 = Controls.AddButton("Oil In Inventory: "+ invoil, 50, 140)
+
+        
+      Else 
+        
+        TextWindow.WriteLine("You don't have enough iron")
+        
+        EndIf
+        
+      
+    ElseIf itemofinterestsell = "oil" Then
+        
+        TextWindow.WriteLine("How much oil do you want to sell?")
+        numbersell = TextWindow.ReadNumber()
+        
+        If invoil >= numbersell Then
+          
+          invoil = invoil - numbersell
+          money = money + ((numbersell * oilprice)*(1 - (taxwhich/100)))
+          TextWindow.WriteLine("Thank you for selling "+ numbersell + " oil")
+          TextWindow.WriteLine("You have earned: "+ (numbersell*oilprice) + " money")
+          TextWindow.WriteLine("After Tax (" + taxwhich + "%): "+ ((numbersell * oilprice)*(1 - (taxwhich/100))) + " money")
+          
+          Controls.Remove(Button5)
+          Button5 = Controls.AddButton("Money: "+ money, 50, 50)
+          Controls.Remove(Button6)
+          Button6 = Controls.AddButton("Wood In Inventory: " + invwood, 50, 80)
+          Controls.Remove(Button7)
+          Button7 = Controls.AddButton("Iron In Inventory: "+ inviron, 50, 110)
+          Controls.Remove(Button8)
+          Button8 = Controls.AddButton("Oil In Inventory: "+ invoil, 50, 140)
+
+          
+        Else
+          
+          TextWindow.WriteLine("You don't have enough oil")
+          
+          EndIf
+        
+        EndIf
+        
+      
+    Else
+      
+      TextWindow.WriteLine("Please pick another shop")
+      
+    EndIf
+    
+  EndIf
+  
+  EndSub

@@ -1,0 +1,223 @@
+GraphicsWindow.Title = "The Factory Game"
+ImagePath = "D:\Small Basic\map.png"
+Image = ImageList.LoadImage(ImagePath)
+Width = ImageList.GetWidthOfImage(ImagePath)
+Height= ImageList.GetHeightOfImage(ImagePath)
+GraphicsWindow.Width = Width
+GraphicsWindow.Height= Height
+GraphicsWindow.DrawImage(Image, 0, 0)
+ 
+money = 100000
+cacao = 10
+milk = 10
+frame = Shapes.AddRectangle(950,50)
+Shapes.Move(frame,235,690)
+bfactory = Controls.AddButton("Build Factory",515,700)
+bstorage = Controls.AddButton("Build Storage Facility",610,700)
+brepair = Controls.AddButton("Build Repair Facility",755,700)
+bHQ = Controls.AddButton("Build HQ",890,700)
+moneybutt = Controls.AddButton("£"+money,410,700)
+buyingred = Controls.AddButton("Buy Ingredients",990,700)
+building = "false"
+demolishbutt = Controls.AddButton("Demolish",1100,700)
+nfact = 0
+tax = 5
+price = 100000
+Timer.Interval = 300
+time = 5
+timebutt = Controls.AddButton("Next payout in: "+time,290,700)
+runbutt = Controls.AddButton("run",100,100)
+i = 1
+
+'Code WHICH GIVES YOU MONEY'
+
+Sub addmoney
+  
+  If time = 0 Then
+    
+    money = money + (nfact * 10000)
+    Controls.Remove(moneybutt)
+    Controls.Remove(timebutt)
+  timebutt = Controls.AddButton("Next payout in: "+time,290,700)
+  moneybutt = Controls.AddButton("£"+money,410,700)
+  time = 1
+
+  EndIf
+  
+EndSub
+
+'TIMER WHICH CHECKS WHEN TO GIVE YOU MONEY'
+
+Timer.Tick = OnTick
+Sub OnTick
+  Timer.Pause()
+  time = time-1
+  Controls.Remove(timebutt)
+  timebutt = Controls.AddButton("Next payout in: "+time,290,700)
+  addmoney()
+  Timer.Resume()
+EndSub
+
+'DONE'
+
+'BUILD'
+
+Sub buildf
+  
+  
+  
+EndSub
+
+
+
+
+'DONE'
+
+'BUILDING CODE'
+
+ GraphicsWindow.MouseDown = OnMouseDown
+
+Sub OnMouseDown
+  
+  If building = "true" Then
+    
+    If buildingitem = "factory" Then
+      
+      If money >= price Then
+        
+        nfact = nfact + 1
+          money = money - price
+          factory = Controls.AddButton("",xm1,ym1)
+          LDShapes.SetImage(factory,"D:\Small Basic\factory3.png")
+          pos[i]["xpos"] = xm1
+          pos[i]["ypos"] = ym1
+          i = i + 1
+        price = (100000+(nfact*20000))
+        Controls.Remove(moneybutt)
+        moneybutt = Controls.AddButton("£"+money,410,700)
+        
+'INSERT COLLISION CODE HERE'
+        
+
+      EndIf
+      
+      
+    EndIf
+    
+  EndIf  
+  
+EndSub
+
+
+Controls.ButtonClicked = clicked
+
+Sub clicked
+  
+  buttonclicked = Controls.LastClickedButton
+  
+  If buttonclicked = bfactory Then
+      
+      buildfactory()
+    
+  ElseIf buttonclicked = bstorage Then
+    
+    buildstorage()
+    
+  ElseIf buttonclicked = runbutt Then
+    
+    For i = 1 To nfact
+  TextWindow.WriteLine(pos[i] + "   ")
+EndFor
+    
+ EndIf
+ 
+
+ 
+EndSub
+
+'DONE'
+
+'IMAGINE FACTORY'
+
+Sub buildfactory
+  
+  If building = "true" Then
+      
+      building = "false"
+      Shapes.Remove(FactoryWhere)
+      
+    ElseIf building = "false" Then
+    
+    FactoryWhere = Shapes.AddImage("D:\Small Basic\factory3.png")
+    LDShapes.ReSize(FactoryWhere,48,48)
+  xm = GraphicsWindow.MouseX
+    ym = GraphicsWindow.MouseY
+    building = "true"
+    buildingitem = "factory"
+    
+    While building = "true"
+      
+      ym = GraphicsWindow.MouseY
+      
+      If ym < 660 Then
+        
+       xm1 = GraphicsWindow.MouseX -21
+       ym1 = GraphicsWindow.MouseY -21
+       Shapes.Move(FactoryWhere,xm1,ym1)
+       
+     Else
+       
+       Shapes.Move(FactoryWhere,xm1,ym1)
+       
+     EndIf
+     
+
+    EndWhile
+    
+  EndIf
+  
+EndSub
+
+'DONE'
+
+'IMAGINE STORAGE AREA'
+
+Sub buildstorage
+  
+  If building = "true" Then
+      
+      building = "false"
+      Shapes.Remove(FactoryWhere)
+      
+    ElseIf building = "false" Then
+    
+  FactoryWhere = Shapes.AddImage("C:\Users\micha\Downloads\SideScroller\SideScroller\Elevator1.PNG")
+  xm = GraphicsWindow.MouseX
+    ym = GraphicsWindow.MouseY
+    building = "true"
+    buildingitem = "storage"
+    
+    While building = "true"
+      
+      ym = GraphicsWindow.MouseY
+      
+      If ym < 660 Then
+        
+       xm1 = GraphicsWindow.MouseX -10
+       ym1 = GraphicsWindow.MouseY -10
+       Shapes.Move(FactoryWhere,xm1,ym1)
+       
+     Else
+       
+       Shapes.Move(FactoryWhere,xm1,ym1)
+       
+     EndIf
+     
+
+    EndWhile
+    
+  EndIf
+  
+EndSub
+
+'DONE'

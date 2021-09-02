@@ -1,0 +1,6 @@
+ GraphicsWindow.BrushColor = "Red"
+          GraphicsWindow.DrawText(200,200,"Factory to close to other building")
+          GraphicsWindow.BrushColor = "Black"
+
+["ypos"]
+["xpos"]
